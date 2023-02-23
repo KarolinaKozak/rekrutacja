@@ -1,0 +1,612 @@
+$fontDefault: "Mulish", sans-serif;
+$defaultBackgroundColor: #fff;
+$contentTextColor1: #5f5f5c;
+$contentTextColor2: #fff;
+$contentTextColor3: #0087fe;
+$contentTextColor4: rgba(255, 255, 255, 0.72);
+$h2TextColor: #1f1f1d;
+$contentFontSize: 1rem;
+$contentFontWeight: 400;
+// buttons
+$buttonBackgroundPrimary: #0087fe;
+$buttonBackgroundHover: #0e75ea;
+$buttonBackgroundDisabled: #bbbbb8;
+$buttonTextColor: #fff;
+$buttonFontWeight: 700;
+$buttonFontSizeXl: 1rem;
+$buttonFontSizeM: 0.875rem;
+$buttonFontSizeS: 0.75rem;
+$buttonPaddingsXl: 0.75rem 1.5rem;
+$buttonPaddingsM: 0.625rem 1.25rem;
+$buttonPaddingsS: 0.5rem 0.75rem;
+$buttonContrastBorder: 0.0625rem solid #fff;
+$buttonContrastBackgroundPrimary: none;
+$buttonContrastBackgroundHover: rgba(255, 255, 255, 0.4);
+$buttonContrastBackgroundDisabled: rgba(255, 255, 255, 0.4);
+$buttonContrastBorderDisabled: none;
+$buttonContrastTextColorDisabled: rgba(255, 255, 255, 0.4);
+
+@mixin buttonPrimaryXl {
+  background: $buttonBackgroundPrimary;
+  color: $buttonTextColor;
+  font-weight: $buttonFontWeight;
+  font-size: $buttonFontSizeXl;
+  padding: $buttonPaddingsXl;
+  transition: all 0.3s ease;
+  border-radius: 0.125rem;
+  display: inline-block;
+}
+@mixin buttonPrimaryM {
+  font-size: $buttonFontSizeM;
+  padding: $buttonPaddingsM;
+}
+@mixin buttonPrimaryS {
+  font-size: $buttonFontSizeS;
+  padding: $buttonPaddingsS;
+}
+@mixin buttonPrimaryHover {
+  background: $buttonBackgroundHover;
+}
+@mixin buttonPrimaryDisabled {
+  background: $buttonBackgroundDisabled;
+}
+@mixin buttonContrastPrimary {
+  @include buttonPrimaryXl;
+  background: $buttonContrastBackgroundPrimary;
+  border: $buttonContrastBorder;
+}
+@mixin buttonContrastHover {
+  @include buttonContrastPrimary;
+  background: $buttonContrastBackgroundHover;
+}
+@mixin buttonContrastDisabled {
+  @include buttonContrastPrimary;
+  background: $buttonContrastBackgroundDisabled;
+  color: $buttonContrastTextColorDisabled;
+  border-color: $buttonContrastBorderDisabled;
+}
+@mixin h1 {
+  color: $contentTextColor2;
+  font-weight: 700;
+  font-size: 2.5rem;
+  line-height: 3.75rem;
+  margin-bottom: 1.125rem;
+}
+@mixin h2 {
+  font-weight: 700;
+  font-size: 2rem;
+  line-height: 3rem;
+  color: $h2TextColor;
+  margin-bottom: 1rem;
+}
+@mixin h3 {
+  font-weight: 700;
+  font-size: 1.25rem;
+  line-height: 2rem;
+  color: $h2TextColor;
+}
+@mixin ul {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  li {
+    @include paragraph;
+    color: $h2TextColor;
+    opacity: 0.8;
+    position: relative;
+    padding: 0.375rem 1.75rem;
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.3125rem;
+      background: url("../img/li.svg") center center no-repeat;
+      height: 1.5rem;
+      width: 1.5rem;
+    }
+  }
+}
+@mixin paragraph {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  letter-spacing: 0.0125rem;
+}
+@mixin hr {
+  height: 0.0625rem;
+  background: rgba(255, 255, 255, 0.4);
+  margin: 0;
+  opacity: 1;
+}
+
+::-moz-focus-inner,
+a:active,
+a:focus,
+button:active,
+button:focus {
+  outline: none;
+  border: 0;
+  -moz-outline-style: none;
+}
+body {
+  overflow-x: hidden;
+  font-family: $fontDefault;
+  color: $contentTextColor1;
+  font-size: $contentFontSize;
+  background: $defaultBackgroundColor;
+}
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+a:hover {
+  text-decoration: none;
+  color: $contentTextColor3;
+  transition: color 0.3s ease;
+}
+.container {
+  max-width: 71rem;
+}
+.header {
+  position: absolute;
+  height: 6rem;
+  left: 0;
+  right: 0;
+  top: 0;
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    @include buttonPrimaryM;
+    @media (max-width: 991px) {
+      display: block;
+      position: relative;
+      padding-top: 2.25rem;
+      .navbar-toggler {
+        position: absolute;
+        top: -2.625rem;
+        right: 0;
+        padding: 0;
+      }
+    }
+    .navbar-brand {
+      padding: 0;
+      margin: 0;
+    }
+    .navbar {
+      .navbar-collapse {
+        .nav-link {
+          font-weight: 700;
+          font-size: 0.875rem;
+          line-height: 1.25rem;
+          color: #fff;
+          padding: 0 0.75rem;
+          &:hover {
+            color: $contentTextColor3;
+          }
+        }
+      }
+      .button {
+        @include buttonContrastPrimary;
+        @media (max-width: 1167px) {
+          @include buttonPrimaryM;
+          @media (max-width: 991px) {
+            display: none;
+          }
+        }
+        margin-left: 3.25rem;
+        &:hover {
+          @include buttonContrastHover;
+          @media (max-width: 1167px) {
+            @include buttonPrimaryM;
+            @media (max-width: 991px) {
+              @include buttonPrimaryS;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.hero-section {
+  padding-top: 6rem;
+  background: radial-gradient(
+      35.21% 43.76% at 5.1% 7.01%,
+      rgba(0, 135, 254, 0.149164) 0%,
+      rgba(0, 135, 254, 0.2) 0%,
+      rgba(0, 135, 254, 0) 100%
+    ),
+    radial-gradient(
+      27.36% 45.53% at 90.42% 60.07%,
+      rgba(0, 135, 254, 0.2) 0%,
+      rgba(0, 135, 254, 0) 100%
+    ),
+    #1f1f1d;
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+    h1 {
+      @include h1;
+      @media (max-width: 1167px) {
+        font-size: 2rem;
+        line-height: 3rem;
+        margin-bottom: 1rem;
+        @media (max-width: 991px) {
+          margin-top: 4.125rem;
+        }
+      }
+    }
+    p {
+      line-height: 1.5rem;
+      color: $contentTextColor4;
+      letter-spacing: 0.0125rem;
+      margin-bottom: 3rem;
+      width: 31.5rem;
+      max-width: 100%;
+    }
+    p:last-child {
+      margin-bottom: 0;
+    }
+    a:first-child {
+      @include buttonPrimaryXl;
+      @media (max-width: 1167px) {
+        @include buttonPrimaryM;
+        @media (max-width: 991px) {
+          @include buttonPrimaryS;
+        }
+      }
+      margin-right: 2rem;
+      &:hover {
+        @include buttonPrimaryHover;
+        @media (max-width: 1167px) {
+          @include buttonPrimaryM;
+          @media (max-width: 991px) {
+            @include buttonPrimaryS;
+          }
+        }
+      }
+    }
+    a:last-child {
+      font-weight: 700;
+      text-decoration-line: underline;
+      color: #fff;
+      &:hover {
+        color: $contentTextColor3;
+      }
+    }
+  }
+}
+.second-section {
+  padding: 4.25rem 0;
+  .second-section-content {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    flex-direction: column;
+    h2 {
+      @include h2;
+      @media (max-width: 1167px) {
+        font-size: 1.5rem;
+        line-height: 2.25rem;
+        @media (max-width: 991px) {
+        }
+      }
+      strong {
+        color: $contentTextColor3;
+      }
+    }
+    ul {
+      @include ul;
+    }
+  }
+}
+.third-section {
+  padding: 4.5rem 0;
+  background: radial-gradient(
+      35.76% 44.26% at 5.1% 7.01%,
+      rgba(0, 135, 254, 0.149164) 0%,
+      rgba(0, 135, 254, 0.2) 0%,
+      rgba(0, 135, 254, 0) 100%
+    ),
+    radial-gradient(
+      45% 104.25% at 85.62% 105.07%,
+      rgba(0, 135, 254, 0.2) 0%,
+      rgba(0, 135, 254, 0) 100%
+    ),
+    linear-gradient(0deg, #1f1f1d, #1f1f1d), #1f1f1d;
+  .third-section-tile {
+    padding-left: 1rem;
+    margin-bottom: 2rem;
+    position: relative;
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.875rem;
+      background: $buttonBackgroundPrimary;
+      height: 0.5rem;
+      width: 0.5rem;
+      border-radius: 50%;
+    }
+    .third-section-title {
+      font-weight: 700;
+      font-size: 1.5rem;
+      line-height: 2.25rem;
+      color: $buttonTextColor;
+      margin-bottom: 0.6875rem;
+      @media (max-width: 1167px) {
+        font-size: 1.25rem;
+        line-height: 2rem;
+      }
+    }
+    .third-section-content {
+      @include paragraph;
+      color: rgba(255, 255, 255, 0.8);
+    }
+  }
+  .hr {
+    @include hr;
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+  }
+  .third-section-button-container {
+    text-align: right;
+    .button {
+      @include buttonPrimaryXl;
+      @media (max-width: 1167px) {
+        @include buttonPrimaryM;
+        @media (max-width: 991px) {
+          @include buttonPrimaryS;
+          width: 100%;
+          text-align: center;
+        }
+      }
+      &:hover {
+        @include buttonPrimaryHover;
+        @media (max-width: 1167px) {
+          @include buttonPrimaryM;
+          @media (max-width: 991px) {
+            @include buttonPrimaryS;
+          }
+        }
+      }
+    }
+  }
+}
+.fourth-section {
+  padding: 4.5rem 0;
+  h2 {
+    @include h2;
+    @media (max-width: 1167px) {
+      font-size: 1.5rem;
+      line-height: 2.25rem;
+      @media (max-width: 991px) {
+      }
+    }
+    text-align: center;
+    strong {
+      color: $contentTextColor3;
+    }
+  }
+  .fourth-section-tile {
+    margin-top: 3rem;
+    .fourth-section-img {
+      img {
+        margin: 0 auto 1rem;
+      }
+    }
+    .fourth-section-content {
+      text-align: center;
+      h3 {
+        @include h3;
+        @media (max-width: 1167px) {
+          font-size: 1rem;
+          line-height: 1.5rem;
+          @media (max-width: 991px) {
+          }
+        }
+        margin-bottom: 0.5rem;
+      }
+      p {
+        @include paragraph;
+        color: $contentTextColor1;
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+.blog-section {
+  .blog-section-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4rem;
+    @media (max-width: 991px) {
+      flex-direction: column;
+      align-items: flex-start;
+      margin-bottom: 2rem;
+    }
+    a {
+      @include buttonPrimaryXl;
+      @media (max-width: 1167px) {
+        @include buttonPrimaryM;
+        @media (max-width: 991px) {
+          @include buttonPrimaryS;
+        }
+      }
+      &:hover {
+        @include buttonPrimaryHover;
+        @media (max-width: 1167px) {
+          @include buttonPrimaryM;
+          @media (max-width: 991px) {
+            @include buttonPrimaryS;
+          }
+        }
+      }
+    }
+  }
+  padding: 4.5rem 0 6.25rem;
+  @media (max-width: 991px) {
+    padding-bottom: 0;
+  }
+  h2 {
+    @include h2;
+    margin-bottom: 0;
+    @media (max-width: 1167px) {
+      font-size: 1.5rem;
+      line-height: 2.25rem;
+      @media (max-width: 991px) {
+        margin-bottom: 1rem;
+      }
+    }
+  }
+  h3 {
+    @include h3;
+    @media (max-width: 1167px) {
+      font-size: 1rem;
+      line-height: 1.5rem;
+      @media (max-width: 991px) {
+      }
+    }
+    margin-bottom: 1rem;
+  }
+  img {
+    margin-bottom: 2rem;
+  }
+  article {
+    width: 21rem;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+  @media (max-width: 1167px) {
+    .col-12:last-child {
+      display: none;
+    }
+    @media (max-width: 991px) {
+      .col-12:last-child {
+        display: block;
+      }
+      .col-12 {
+        margin-bottom: 4rem;
+      }
+    }
+  }
+  .date-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    img {
+      display: inline-block;
+      margin-bottom: 0;
+      margin-left: 0.5rem;
+    }
+    .date {
+      font-size: 0.875rem;
+      line-height: 1.25rem;
+      color: #9b9b99;
+    }
+    .link {
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration-line: underline;
+      color: $h2TextColor;
+      &:hover {
+        color: $buttonBackgroundHover;
+      }
+    }
+  }
+}
+.footer {
+  padding: 4rem 0;
+  background: radial-gradient(
+      45% 104.25% at 85.62% 105.07%,
+      rgba(0, 135, 254, 0.2) 0%,
+      rgba(0, 135, 254, 0) 100%
+    ),
+    #1f1f1d;
+  .footer-top {
+    padding-bottom: 4rem;
+    .footer-text {
+      p {
+        @include paragraph;
+        color: $contentTextColor4;
+        opacity: 0.8;
+        margin-top: 1.125rem;
+        width: 29.3125rem;
+        max-width: 100%;
+        margin-bottom: 0;
+        @media (max-width: 991px) {
+          margin-bottom: 3rem;
+        }
+      }
+    }
+    .menu-footer-menu-container {
+      height: 100%;
+      ul {
+        display: flex;
+        padding: 0;
+        margin: 0;
+        justify-content: flex-end;
+        align-items: flex-end;
+        height: 100%;
+        list-style-type: none;
+        @media (max-width: 991px) {
+          justify-content:  flex-start;
+        }
+        li {
+          a {
+            padding: 0 0.75rem;
+            font-weight: 700;
+            font-size: 1rem;
+    
+            color: $buttonTextColor;
+            &:hover {
+              color: $buttonBackgroundPrimary;
+            }
+          }
+        }
+      }
+    }
+  }
+  .hr {
+    @include hr;
+  }
+  .footer-bottom {
+    margin-top: 4rem;
+    .container {
+      display: flex;
+      justify-content: space-between;
+      @media (max-width: 991px) {
+        flex-direction: column;
+        p {
+          margin-bottom: 2rem !important;
+        }
+        a {
+          display: block;
+          margin-left: 0 !important;
+        }
+      }
+      p {
+        margin-bottom: 0;
+        @include paragraph;
+        color: $contentTextColor4;
+        a {
+          margin-left: 1.5rem;
+        }
+      }
+    }
+  }
+}
+.navbar-toggler {
+  border: none;
+}
+.navbar-toggler:focus {
+  color: transparent;
+}
